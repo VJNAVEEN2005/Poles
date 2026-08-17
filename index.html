@@ -1,0 +1,890 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>VJNAVEEN2005 — Apps & Projects</title>
+
+  <meta
+    name="description"
+    content="Official developer website of VJNAVEEN2005. Discover apps, projects, privacy policies and more."
+  >
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #050816;
+      --card: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --blue: #6366f1;
+      --purple: #8b5cf6;
+      --cyan: #06b6d4;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 20% 10%,
+          rgba(99, 102, 241, 0.22),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(139, 92, 246, 0.18),
+          transparent 30%
+        ),
+        var(--bg);
+
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background glow */
+
+    .glow {
+      position: fixed;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .glow.one {
+      background: #6366f1;
+      top: 10%;
+      left: -150px;
+    }
+
+    .glow.two {
+      background: #06b6d4;
+      bottom: 5%;
+      right: -150px;
+    }
+
+    /* Navigation */
+
+    nav {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+
+      background: rgba(5, 8, 22, 0.65);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-inner {
+      max-width: 1150px;
+      margin: auto;
+      height: 72px;
+      padding: 0 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+
+      border-radius: 12px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: linear-gradient(
+        135deg,
+        var(--blue),
+        var(--purple)
+      );
+
+      box-shadow:
+        0 8px 30px rgba(99, 102, 241, 0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    /* Hero */
+
+    .hero {
+      max-width: 1150px;
+      margin: auto;
+      min-height: 100vh;
+      padding: 150px 24px 100px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 70px;
+    }
+
+    .hero-content {
+      max-width: 650px;
+      animation: fadeUp 0.8s ease;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 8px 14px;
+
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 999px;
+
+      background: rgba(99, 102, 241, 0.1);
+
+      color: #c7d2fe;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      margin-bottom: 24px;
+    }
+
+    .badge span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 12px #22c55e;
+    }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -4px;
+      margin-bottom: 28px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        90deg,
+        #818cf8,
+        #a78bfa,
+        #22d3ee
+      );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.7;
+      max-width: 590px;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      padding: 14px 21px;
+
+      border-radius: 13px;
+
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      color: white;
+
+      background: linear-gradient(
+        135deg,
+        var(--blue),
+        var(--purple)
+      );
+
+      box-shadow:
+        0 12px 35px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 18px 45px rgba(99, 102, 241, 0.45);
+    }
+
+    .btn-secondary {
+      color: white;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* Hero visual */
+
+    .hero-visual {
+      width: 360px;
+      height: 360px;
+
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .orb {
+      width: 250px;
+      height: 250px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 35% 30%,
+          #a5b4fc,
+          #6366f1 35%,
+          #312e81 70%,
+          #111827
+        );
+
+      box-shadow:
+        0 0 100px rgba(99, 102, 241, 0.35),
+        inset -30px -30px 60px rgba(0, 0, 0, 0.35);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 80px;
+    }
+
+    .orbit {
+      position: absolute;
+
+      width: 330px;
+      height: 150px;
+
+      border: 1px solid rgba(129, 140, 248, 0.25);
+
+      border-radius: 50%;
+
+      transform: rotate(-25deg);
+    }
+
+    .orbit.two {
+      transform: rotate(55deg);
+      width: 300px;
+    }
+
+    /* Sections */
+
+    section {
+      max-width: 1150px;
+      margin: auto;
+      padding: 100px 24px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 55px;
+    }
+
+    .section-heading span {
+      color: #818cf8;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(34px, 5vw, 52px);
+      letter-spacing: -2px;
+      margin-top: 12px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 15px;
+    }
+
+    /* App card */
+
+    .app-card {
+      position: relative;
+
+      display: grid;
+      grid-template-columns: 170px 1fr;
+
+      gap: 35px;
+
+      padding: 38px;
+
+      border: 1px solid var(--border);
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.08),
+          rgba(255, 255, 255, 0.025)
+        );
+
+      backdrop-filter: blur(20px);
+
+      overflow: hidden;
+
+      transition: 0.35s;
+    }
+
+    .app-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(129, 140, 248, 0.35);
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.25);
+    }
+
+    .app-icon {
+      width: 150px;
+      height: 150px;
+
+      border-radius: 32px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f97316,
+          #f59e0b
+        );
+
+      font-size: 58px;
+
+      box-shadow:
+        0 20px 50px rgba(249, 115, 22, 0.25);
+    }
+
+    .app-info h3 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .app-tag {
+      display: inline-block;
+
+      padding: 5px 10px;
+
+      border-radius: 999px;
+
+      background: rgba(34, 197, 94, 0.1);
+      color: #86efac;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      margin-bottom: 16px;
+    }
+
+    .app-info p {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 650px;
+      margin-bottom: 25px;
+    }
+
+    /* Features */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 28px;
+
+      border: 1px solid var(--border);
+      border-radius: 20px;
+
+      background: rgba(255, 255, 255, 0.035);
+
+      transition: 0.3s;
+    }
+
+    .feature:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+
+    .feature h3 {
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* Footer */
+
+    footer {
+      border-top: 1px solid var(--border);
+
+      padding: 45px 24px;
+
+      text-align: center;
+
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      margin-bottom: 20px;
+    }
+
+    .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    /* Animations */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    /* Responsive */
+
+    @media (max-width: 850px) {
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 130px;
+      }
+
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        width: 300px;
+        height: 300px;
+      }
+
+      .orb {
+        width: 210px;
+        height: 210px;
+      }
+
+      .orbit {
+        width: 280px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .app-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .app-icon {
+        margin: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .app-card {
+        padding: 25px;
+      }
+
+      section {
+        padding: 75px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+
+  <!-- Navigation -->
+
+  <nav>
+    <div class="nav-inner">
+
+      <a class="logo" href="#">
+        <div class="logo-icon">
+          V
+        </div>
+
+        <span>VJNAVEEN2005</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#apps">Apps</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- Hero -->
+
+  <main>
+
+    <div class="hero">
+
+      <div class="hero-content">
+
+        <div class="badge">
+          <span></span>
+          Independent Developer
+        </div>
+
+        <h1>
+          Building
+          <span class="gradient-text">
+            useful digital experiences.
+          </span>
+        </h1>
+
+        <p class="hero-description">
+          Welcome to the official developer website of
+          VJNAVEEN2005. Explore my applications, projects,
+          and digital products built with curiosity and technology.
+        </p>
+
+        <div class="buttons">
+
+          <a
+            class="btn btn-primary"
+            href="#apps"
+          >
+            Explore Apps →
+          </a>
+
+          <a
+            class="btn btn-secondary"
+            href="https://github.com/VJNAVEEN2005"
+            target="_blank"
+            rel="noopener"
+          >
+            View GitHub
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="hero-visual">
+
+        <div class="orbit"></div>
+        <div class="orbit two"></div>
+
+        <div class="orb">
+          ✦
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Apps -->
+
+    <section id="apps">
+
+      <div class="section-heading">
+
+        <span>My Applications</span>
+
+        <h2>Built with purpose.</h2>
+
+        <p>
+          Explore the applications currently available.
+        </p>
+
+      </div>
+
+
+      <div class="app-card">
+
+        <div class="app-icon">
+          ◈
+        </div>
+
+        <div class="app-info">
+
+          <span class="app-tag">
+            AVAILABLE ON GOOGLE PLAY
+          </span>
+
+          <h3>Poles</h3>
+
+          <p>
+            Poles is an Android application designed to provide
+            a simple and useful mobile experience. The application
+            is continuously improved with new features and updates.
+          </p>
+
+          <a
+            class="btn btn-primary"
+            href="https://play.google.com/store/apps/details?id=com.vjn.poles"
+            target="_blank"
+            rel="noopener"
+          >
+            Google Play →
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Features -->
+
+    <section id="about">
+
+      <div class="section-heading">
+
+        <span>Developer</span>
+
+        <h2>What I care about.</h2>
+
+        <p>
+          Technology should be useful, simple and accessible.
+        </p>
+
+      </div>
+
+
+      <div class="features">
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            🚀
+          </div>
+
+          <h3>Innovation</h3>
+
+          <p>
+            Exploring new technologies and turning ideas
+            into practical digital products.
+          </p>
+
+        </div>
+
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            ⚡
+          </div>
+
+          <h3>Simplicity</h3>
+
+          <p>
+            Creating interfaces that are easy to understand,
+            fast and enjoyable to use.
+          </p>
+
+        </div>
+
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            🛠️
+          </div>
+
+          <h3>Continuous Improvement</h3>
+
+          <p>
+            Every application is continuously refined through
+            feedback, testing and new ideas.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- Footer -->
+
+  <footer id="contact">
+
+    <div class="footer-links">
+
+      <a
+        href="https://github.com/VJNAVEEN2005"
+        target="_blank"
+        rel="noopener"
+      >
+        GitHub
+      </a>
+
+      <a
+        href="https://github.com/VJNAVEEN2005/T-and-C"
+        target="_blank"
+        rel="noopener"
+      >
+        Terms & Conditions
+      </a>
+
+      <a
+        href="mailto:vjnaveen2005@gmail.com"
+      >
+        Contact
+      </a>
+
+    </div>
+
+    <p>
+      © 2026 VJNAVEEN2005. All rights reserved.
+    </p>
+
+  </footer>
+
+</body>
+</html>
+```
